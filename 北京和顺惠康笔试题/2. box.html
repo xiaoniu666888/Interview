@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer,
+        .middle,
+        .inner {
+            margin: 1px;
+            border: 1px solid #000;
+            box-sizing: border-box;
+        }
+
+
+        @media screen and (min-width:300px) {
+            .outer {
+                background-color: red;
+                width: 400px;
+                height: 400px;
+            }
+
+            .middle {
+                background-color: green;
+                width: 200px;
+                height: 200px;
+            }
+
+            .inner {
+                background-color: blue;
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media screen and (min-width:768px) {
+            .outer {
+                background-color: red;
+                width: 400px;
+                height: 400px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .middle {
+                background-color: green;
+                width: 200px;
+                height: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .inner {
+                background-color: blue;
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media screen and (min-width:1080px) {
+            .outer {
+                background-color: red;
+                width: 400px;
+                height: 400px;
+                position: relative;
+            }
+
+            .middle {
+                background-color: green;
+                width: 200px;
+                height: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+
+            .inner {
+                background-color: blue;
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="middle">
+            <div class="inner"></div>
+        </div>
+    </div>
+</body>
+
+</html>
