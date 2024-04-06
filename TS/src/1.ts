@@ -1,53 +1,45 @@
-// let a: {
-//     b: number, // a有个类型为number的属性b
-//     c?: string, // a可能有个类型为string的属性c,如果有属性c,其值可以为undefined
-//     [key: number]: boolean // a可能有任意多个数字属性,其值为布尔值
-// }
-// a = { b: 1 }
-// a = { b: 1, c: 'd' }
-// a = { b: 1, 10: true }
-// console.log(a[10])
-// a = { b: 1, 10: true, 20: false }
+let a = [1, 2, 3]   // number[]
 
-// // a = { 10: true }  // 类型 "{ 10: true; }" 中缺少属性 "b"，但类型 "{ [key: number]: boolean; b: number; c?: string | undefined; }" 中需要该属性。
+let b = ['a', 'b']  // string[]
+// b.push(1)  类型“number”的参数不能赋给类型“string”的参数
 
-// // a = { b: 1, 33: 'red' } //不能将类型“string”分配给类型“boolean”。ts(2322)
-// // 1.ts(4, 5): 所需类型来自此索引签名。
+let c: string[] = ['a', 'b']  //string[]
+let d = [1, 'a']    // (string | number)[]
+const e = [2, 'b']  // (string | number)[]
+
+let f = ['red']
+f.push('blue')
+// f.push(true)
+// Argument of type 'boolean' is not assignable to parameter of type 'string'.
+
+let g = [] // any[]
+g.push(1)
+let g1 = g
+g.push('red') // number[]
+let g2 = g   // (string | number)[]
+
+let h: number[] = [] // number[]
+h.push(1)
+let h1 = h // number[]
+// h.push('red') // 类型“string”的参数不能赋给类型“number”的参数
 
 
-// // 索引签名中键的名称可以是任何词，不一定非得是key
+// 另一种数组类型写法 Array[]
+let i: Array<number> = []
+let j: Array<string> = []
+let k: Array<number | string> = []
 
-// let airpalne: {
-//     // [seatNumber]: number // 类型文本中的计算属性名称必须引用类型为文本类型或 "unique symbol" 类型的表达式
-//     [seatNumber: number | string]: number
-// }
-// airpalne = {
-//     '34D': 34,
-//     34: 34
-// }
-// console.log(airpalne)
-// // 键的类型(T)必须可赋值给number或者string, 这是因为JavaScript中对象的键是字符串,数组是特殊的对象,键是数字
+// T[]写法
+let l: (string | number)[] = []
 
-// let a: {} = {
-//     toString() {
-//         return 3
-//     }
-// }
-
-let b: Object = {
-
-    // 不能将类型“() => number”分配给类型“() => string”。不能将类型“number”分配给类型“string”
-    // toString() {
-    //     return 3
-    // },
-
-    toString() {
-        return '3'
-    },
-    valueOf() {
-        return 3
-    }
-
+function buildArray() {
+    let a = []
+    a.push(1)
+    a.push('red')
+    return a
 }
-console.log(b.toString())
-
+// 当数组离开定义时所在的作用域后, Typescript将最终确定一个类型，不再扩张
+let myArray = buildArray() // (string | number)[]
+// 类型“void”上不存在属性“push”
+// 1.ts:43:9 - error TS2339: Property 'push' does not exist on type 'void'
+console.log(myArray)
