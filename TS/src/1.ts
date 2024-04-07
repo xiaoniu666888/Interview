@@ -1,45 +1,48 @@
-let a = [1, 2, 3]   // number[]
+let a: [number] = [1];
+let b: [string, string, number] = ["malcolm", "gladwell", 1963];
+// b = ["queen", "elizabeth", 1967,'sss'];
+// 不能将类型“[string, string, number, string]”分配给类型“[string, string, number]”。
+//   源具有 4 个元素，但目标仅允许 3 个。ts(2322)
 
-let b = ['a', 'b']  // string[]
-// b.push(1)  类型“number”的参数不能赋给类型“string”的参数
+// 元组也支持可选的元素。与在对象中的类型一样, ?表示"可选":
 
-let c: string[] = ['a', 'b']  //string[]
-let d = [1, 'a']    // (string | number)[]
-const e = [2, 'b']  // (string | number)[]
+// 火车票价数组, 不同的方向价格不同
+let trainFares: [number, number?][] = [[3.72], [312.32], [321.312]]; // [number, (number | undefined)?][]
 
-let f = ['red']
-f.push('blue')
-// f.push(true)
-// Argument of type 'boolean' is not assignable to parameter of type 'string'.
+// 上边等价于：
+let moreTrainFares: ([number] | [number, number])[] = [
+  [3.72],
+  [312.32],
+  [321.312],
+  [321.312],
+];
 
-let g = [] // any[]
-g.push(1)
-let g1 = g
-g.push('red') // number[]
-let g2 = g   // (string | number)[]
+// 元组也支持剩余元素，即为元组定义最小长度：
 
-let h: number[] = [] // number[]
-h.push(1)
-let h1 = h // number[]
-// h.push('red') // 类型“string”的参数不能赋给类型“number”的参数
+// 字符串列表，至少有一个元素
+let friends: [string, ...string[]] = ["a", "b", "c", "d", "e", "f"];
 
+// 元素类型不同的列表
+let list: [number, boolean, ...string[]] = [1, false, "a", "b", "c"];
+list.push(111);
+console.log(list);
 
-// 另一种数组类型写法 Array[]
-let i: Array<number> = []
-let j: Array<string> = []
-let k: Array<number | string> = []
+let list2: readonly [number, boolean, ...string[]] = [1, false, "a", "b", "c"];
+// list2.push(111);  // 类型“readonly [number, boolean, ...string[]]”上不存在属性“push”。
 
-// T[]写法
-let l: (string | number)[] = []
+let list3: readonly number[] = [1, 2, 3];
+let list5: readonly number[] = list3.concat(4);
+let three = list5[2];
 
-function buildArray() {
-    let a = []
-    a.push(1)
-    a.push('red')
-    return a
-}
-// 当数组离开定义时所在的作用域后, Typescript将最终确定一个类型，不再扩张
-let myArray = buildArray() // (string | number)[]
-// 类型“void”上不存在属性“push”
-// 1.ts:43:9 - error TS2339: Property 'push' does not exist on type 'void'
-console.log(myArray)
+// list3[2] = 666 // 类型“readonly number[]”中的索引签名仅允许读取
+
+// 注解类型还能使用Array。类似地，声明只读数组和原数组，也可以使用长格式句法：
+
+type A = readonly string[];
+type B = ReadonlyArray<string>;
+type C = Readonly<string[]>;
+
+type D = readonly [number, string];
+type E = Readonly<[number, string]>;
+
+// 使用什么全凭个人喜好
