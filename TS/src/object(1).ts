@@ -46,7 +46,6 @@
 // }
 // 1.ts:45:5 - error TS2353: Object literal may only specify known properties, and 'c' does not exist in type '{ b: number; }
 
-
 // let i: number;
 // let j = i * 3 //在赋值前使用了变量“i”。
 
