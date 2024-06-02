@@ -21,18 +21,25 @@
 // };
 // const obj = myCreate(o);
 // console.log(obj.name);
-obj.getMyname();
+obj.getMyname()
 
-function myCreate(proto, propertiesObject) {
+// function myCreate(proto, propertiesObject) {
+//   function F() {}
+
+//   F.prototype = proto;
+//   let obj = new F();
+
+//   if (propertiesObject) {
+//     for (let key in propertiesObject) {
+//       obj[key] = propertiesObject[key];
+//     }
+//   }
+//   return obj;
+// }
+
+function myCreate(obj) {
   function F() {}
 
-  F.prototype = proto;
-  let obj = new F();
-
-  if (propertiesObject) {
-    for (let key in propertiesObject) {
-      obj[key] = propertiesObject[key];
-    }
-  }
-  return obj;
+  F.prototype = obj
+  return new F()
 }
