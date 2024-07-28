@@ -26,8 +26,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="IxW07JwhS-mHqVlaGJVX-9" value="自引用" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="290" y="38" width="60" height="30" as="geometry" />
+        <mxCell id="IxW07JwhS-mHqVlaGJVX-9" value="自引用（关联）" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="266" y="38" width="110" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
