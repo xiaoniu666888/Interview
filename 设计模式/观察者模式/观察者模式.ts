@@ -44,3 +44,4 @@ const observer2 = new Observer('B')
 sub.attach(observer2)
 
 sub.setState(1)
+
