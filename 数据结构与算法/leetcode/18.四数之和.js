@@ -38,9 +38,11 @@ var fourSum = function (nums, target) {
           continue
         }
         res.push([nums[i], nums[j], nums[left], nums[right]])
+        // 对left去重
         while (left < right && nums[left] === nums[left + 1]) {
           left++
         }
+        // 对right去重
         while (left < right && nums[right] === nums[right - 1]) {
           right--
         }
