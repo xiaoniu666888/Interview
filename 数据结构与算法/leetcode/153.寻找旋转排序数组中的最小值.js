@@ -13,6 +13,10 @@ var findMin = function (nums) {
   let left = 0
   let right = nums.length - 1
   let mid
+  // 这是有序的情况
+  if (nums[right] > nums[left]) {
+    return nums[0]
+  }
   // [left,right)
   while (left < right) {
     mid = Math.floor((left + right) / 2)
