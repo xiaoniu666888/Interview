@@ -10,26 +10,6 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function (s) {
-  // let len = s.length
-  // if (len <= 1) return len
-  // let max = 0
-  // let fast = 0
-  // let slow = 0
-  // let tem
-  // while (fast < len) {
-  //   tem = s.slice(slow, fast)
-  //   if (tem.indexOf(s[fast]) > -1) {
-  //     slow++
-  //     continue
-  //   } else {
-  //     fast++
-  //   }
-  //   if (fast - 1 - slow + 1 > max) {
-  //     max = fast - 1 - slow + 1
-  //   }
-  // }
-  // return max
-
   // 数组
   // let arr = [],
   //   max = 0
