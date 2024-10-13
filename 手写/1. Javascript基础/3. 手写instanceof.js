@@ -18,10 +18,26 @@
 // 3. 在while循环中进行比较
 // 4. 判断内部指针指向的原型是否是构造函数的prototype属性，不是就继续遍历下去，直到遍历到最后一个
 
+// function myInstanceOf(left, right) {
+//   let proto = Object.getPrototypeOf(left)
+//   let prototype = right.prototype
+
+//   while (true) {
+//     if (!proto) {
+//       return false
+//     }
+//     if (proto === prototype) {
+//       return true
+//     }
+//     proto = Object.getPrototypeOf(proto)
+//   }
+// }
+// let obj = Object.create(null)
+// console.log(myInstanceOf(obj, Object)) // false
+
 function myInstanceOf(left, right) {
   let proto = Object.getPrototypeOf(left)
   let prototype = right.prototype
-
   while (true) {
     if (!proto) {
       return false
@@ -32,5 +48,13 @@ function myInstanceOf(left, right) {
     proto = Object.getPrototypeOf(proto)
   }
 }
-let obj = Object.create(null)
-console.log(myInstanceOf(obj, Object)) // false
+
+function F() {}
+const f = new F()
+console.log(myInstanceOf(f, F))
+
+console.log(myInstanceOf(f, Object))
+console.log(myInstanceOf(F, Object))
+console.log(myInstanceOf(F, Function))
+console.log(myInstanceOf(Function, Object))
+console.log(myInstanceOf(Object, Function))

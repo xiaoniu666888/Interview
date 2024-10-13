@@ -21,7 +21,7 @@
 // };
 // const obj = myCreate(o);
 // console.log(obj.name);
-obj.getMyname()
+// obj.getMyname()
 
 // function myCreate(proto, propertiesObject) {
 //   function F() {}
