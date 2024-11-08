@@ -18,6 +18,8 @@ var numTrees = function (n) {
       dp[i] += dp[j - 1] * dp[i - j]
     }
   }
+  console.log(dp)
   return dp[n]
 }
+numTrees(3)
 // @lc code=end

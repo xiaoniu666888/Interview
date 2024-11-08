@@ -58,3 +58,17 @@ console.log(myInstanceOf(F, Object))
 console.log(myInstanceOf(F, Function))
 console.log(myInstanceOf(Function, Object))
 console.log(myInstanceOf(Object, Function))
+
+function myInstance2(left, right) {
+  let proto = Object.getPrototypeOf(left)
+  let prototype = right.prototype
+  while (true) {
+    if (proto === prototype) {
+      return true
+    }
+    if (!proto) {
+      return false
+    }
+    proto = Object.getPrototypeOf(proto)
+  }
+}
