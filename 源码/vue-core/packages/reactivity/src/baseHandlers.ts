@@ -53,17 +53,23 @@ class BaseReactiveHandler implements ProxyHandler<Target> {
   ) {}
 
   get(target: Target, key: string | symbol, receiver: object): any {
+    // 获取是否是只读, 是否是浅层
     const isReadonly = this._isReadonly,
       isShallow = this._isShallow
+    // 如果 key 是响应式对象的标志, 则返回是否是响应式对象
     if (key === ReactiveFlags.IS_REACTIVE) {
       return !isReadonly
     } else if (key === ReactiveFlags.IS_READONLY) {
+      // 如果 key 是只读对象的标志, 则返回是否是只读对象
       return isReadonly
     } else if (key === ReactiveFlags.IS_SHALLOW) {
+      // 如果 key 是浅层代理的标志, 则返回是否是浅层代理
       return isShallow
     } else if (key === ReactiveFlags.RAW) {
       if (
+        // 如果 receiver 是只读对象的代理, 则返回原始对象
         receiver ===
+        // 如果 receiver 是只读对象的代理, 则返回只读对象的代理, 否则返回响应式对象的代理
           (isReadonly
             ? isShallow
               ? shallowReadonlyMap
@@ -72,12 +78,15 @@ class BaseReactiveHandler implements ProxyHandler<Target> {
               ? shallowReactiveMap
               : reactiveMap
           ).get(target) ||
+        // receiver 不是代理对象, 但是有相同的原型
         // receiver is not the reactive proxy, but has the same prototype
+        // 这意味着 receiver 是响应式代理对象的普通代理对象
         // this means the receiver is a user proxy of the reactive proxy
         Object.getPrototypeOf(target) === Object.getPrototypeOf(receiver)
       ) {
         return target
       }
+      // 如果 receiver 不是代理对象, 则返回 undefined
       // early return undefined
       return
     }
