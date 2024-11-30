@@ -13,7 +13,7 @@ var trap = function (height) {
   const stack = []
   let sum = 0
   for (let i = 0; i < height.length; i++) {
-    // 栈顶元素小于当前元素，则入栈
+    // 栈顶元素小于当前元素, 弹出栈顶元素，计算雨水面积, 入栈当前元素
     while (stack.length && height[i] > height[stack[stack.length - 1]]) {
       // 栈顶元素出栈，计算雨水面积
       const top = stack.pop()

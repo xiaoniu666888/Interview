@@ -26,6 +26,24 @@
 //   }
 //   return -1
 // }
+
+// var search = function (nums, target) {
+//   let left = 0
+//   let right = nums.length - 1
+//   let middle
+//   while (left <= right) {
+//     middle = Math.floor((left + right) / 2)
+//     if (nums[middle] < target) {
+//       left = middle + 1
+//     } else if (nums[middle] > target) {
+//       right = middle - 1
+//     } else {
+//       return middle
+//     }
+//   }
+//   return -1
+// }
+
 var search = function (nums, target) {
   let left = 0
   let right = nums.length - 1
@@ -42,4 +60,5 @@ var search = function (nums, target) {
   }
   return -1
 }
+
 // @lc code=end
