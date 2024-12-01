@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./1. jsonp.js"></script>
+    <!-- 循环打印红绿灯 -->
+    <script>
+        function red() {
+            console.log("red");
+        }
+
+        function green() {
+            console.log("green");
+        }
+
+        function yellow() {
+            console.log("yellow");
+        }
+
+        const task = (timer, light) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (light === "red") {
+                        red();
+                    } else if (light === "green") {
+                        green();
+                    } else {
+                        yellow();
+                    }
+                    resolve();
+                }, timer * 1000);
+            });
+        };
+
+        const start = () => {
+            task(3, "red")
+                .then(() => task(2, "yellow"))
+                .then(() => task(1, "green"))
+                .then(start)
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+
+        start();
+    </script>
+</body>
+
+</html>
