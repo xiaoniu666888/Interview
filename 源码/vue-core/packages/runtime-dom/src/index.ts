@@ -72,6 +72,7 @@ let renderer: Renderer<Element | ShadowRoot> | HydrationRenderer
 let enabledHydration = false
 
 function ensureRenderer() {
+  // 确保只有一个渲染器
   return (
     renderer ||
     (renderer = createRenderer<Node, Element | ShadowRoot>(rendererOptions))
@@ -96,6 +97,8 @@ export const hydrate = ((...args) => {
 }) as RootHydrateFunction
 
 export const createApp = ((...args) => {
+  // ensureRenderer(): 实例化一个渲染器, 并且返回一个渲染器对象
+  // createApp(): 创建一个应用实例，返回一个应用实例对象
   const app = ensureRenderer().createApp(...args)
 
   if (__DEV__) {
